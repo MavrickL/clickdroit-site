@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentions légales et données personnelles | CLICKDROIT</title>
+<meta name="description" content="Éditeur, hébergeur, traitement des données personnelles et cookies du site clickdroit.fr.">
+<link rel="canonical" href="https://clickdroit.fr/mentions-legales">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="CLICKDROIT">
+<meta property="og:title" content="Mentions légales et données personnelles | CLICKDROIT">
+<meta property="og:description" content="Éditeur, hébergeur, traitement des données personnelles et cookies du site clickdroit.fr.">
+<meta property="og:url" content="https://clickdroit.fr/mentions-legales">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{sans:['"DM Sans"','Arial','sans-serif']},colors:{ink:'#111113',night:'#0a0a0c',soft:'#f0f0f2',paper:'#f7f7f8',line:'#e8e8e8',mute:'#5f5f66'}}}}</script>
+<style>
+body{letter-spacing:-.01em}
+@keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee{animation:marqueeScroll 30s linear infinite}
+.reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+.js .reveal:not(.in){opacity:0;transform:translateY(24px)}
+.dark li{background:#141420;color:rgba(255,255,255,.8)}
+@media (prefers-reduced-motion:reduce){.marquee{animation:none}.js .reveal:not(.in){opacity:1;transform:none}}
+</style>
+<script>document.documentElement.classList.add('js');addEventListener('DOMContentLoaded',()=>{const o=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>o.observe(el));setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')),2500)})</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "CLICKDROIT", "url": "https://clickdroit.fr/", "description": "Intégrateur IA et automatisation pour cabinets d'expertise comptable et entreprises du BTP."}</script>
+</head>
+<body class="bg-white text-ink antialiased font-sans">
+<header class="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-line/70">
+<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+<a href="/" class="text-lg font-bold tracking-tight">CLICKDROIT</a>
+<nav class="hidden md:flex gap-7 text-sm text-mute"><a href="/experts-comptables" class="hover:text-ink transition">Experts-comptables</a><a href="/btp-assistant-vocal" class="hover:text-ink transition">BTP</a><a href="/offres-tarifs" class="hover:text-ink transition">Offres &amp; tarifs</a><a href="/a-propos" class="hover:text-ink transition">À propos</a><a href="/contact" class="hover:text-ink transition">Contact</a></nav>
+<a href="/audit-gratuit" class="bg-ink text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-black transition">Audit gratuit</a>
+</div>
+<nav class="md:hidden max-w-6xl mx-auto px-6 pb-3 flex gap-5 overflow-x-auto text-sm text-mute whitespace-nowrap"><a href="/experts-comptables" class="hover:text-ink transition">Experts-comptables</a><a href="/btp-assistant-vocal" class="hover:text-ink transition">BTP</a><a href="/offres-tarifs" class="hover:text-ink transition">Offres &amp; tarifs</a><a href="/a-propos" class="hover:text-ink transition">À propos</a><a href="/contact" class="hover:text-ink transition">Contact</a></nav>
+</header>
+<main class="max-w-6xl mx-auto px-6">
+<!-- TODO [need: page entière à compléter et faire valider (juriste ou modèle officiel) avant mise en ligne] --><section class="pt-20 md:pt-28 pb-10 reveal "><h1 class="text-[2.6rem] leading-[1.05] md:text-7xl font-semibold tracking-tight text-ink max-w-4xl ">Mentions légales et données personnelles</h1></section><section class="py-14 md:py-20 reveal"><h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-ink mb-8 max-w-3xl">Éditeur du site</h2><div class="text-mute text-[1.05rem] leading-relaxed space-y-4"><!-- TODO [need: raison sociale ou nom de l'entrepreneur] --><!-- TODO [need: forme juridique] --><!-- TODO [need: capital social, si société] --><!-- TODO [need: siège : adresse] --><!-- TODO [need: SIREN / RCS] --><!-- TODO [need: n° TVA intracommunautaire, si applicable] --><!-- TODO [need: directeur de la publication] --><!-- TODO [need: contact : e-mail, téléphone] --><p class="max-w-3xl">Informations en cours de complétion.</p></div></section><section class="py-14 md:py-20 reveal"><h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-ink mb-8 max-w-3xl">Hébergeur</h2><div class="text-mute text-[1.05rem] leading-relaxed space-y-4"><!-- TODO [need: nom, adresse et téléphone de l'hébergeur du site (DNS observé : Infomaniak, à confirmer)] --><p class="max-w-3xl">Informations en cours de complétion.</p></div></section><section class="py-14 md:py-20 reveal"><h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-ink mb-8 max-w-3xl">Propriété intellectuelle</h2><div class="text-mute text-[1.05rem] leading-relaxed space-y-4"><!-- TODO [need: éditeur (titulaire des droits)] --><p class="max-w-3xl">Les contenus de ce site sont la propriété de leur éditeur, sauf mention contraire.</p></div></section><div id="donnees"></div><section class="py-14 md:py-20 reveal"><h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-ink mb-8 max-w-3xl">Données personnelles</h2><div class="text-mute text-[1.05rem] leading-relaxed space-y-4"><ul class="grid md:grid-cols-2 gap-3"><li class="bg-soft rounded-[1em] p-5 text-ink/80">Données collectées : formulaire de contact, questionnaire et prise de rendez-vous d'audit (nom, société, coordonnées, informations sur l'activité).</li><li class="bg-soft rounded-[1em] p-5 text-ink/80">Finalités : répondre à vos demandes, organiser et réaliser l'audit.</li><li class="bg-soft rounded-[1em] p-5 text-ink/80">Vos droits : accès, rectification, effacement, opposition, limitation, portabilité. Vous pouvez saisir la CNIL (cnil.fr).</li></ul><!-- TODO [need: responsable du traitement] --><!-- TODO [need: base légale à valider — mesures précontractuelles / intérêt légitime] --><!-- TODO [need: destinataires et sous-traitants : outil d'agenda, hébergeur, outil de formulaire] --><!-- TODO [need: durée de conservation] --><!-- TODO [need: contact pour l'exercice des droits] --><!-- TODO [need: transferts hors UE selon les outils retenus] --></div></section><section class="py-14 md:py-20 reveal"><h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-ink mb-8 max-w-3xl">Cookies</h2><div class="text-mute text-[1.05rem] leading-relaxed space-y-4"><!-- TODO [need: liste des cookies et traceurs, outil de mesure d'audience, bandeau de consentement si nécessaire] --><p class="max-w-3xl">Informations en cours de complétion.</p></div></section><section class="py-14 md:py-20 reveal"><h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-ink mb-8 max-w-3xl">Clients</h2><div class="text-mute text-[1.05rem] leading-relaxed space-y-4"><p class="max-w-3xl">Pour les projets, CLICKDROIT agit comme sous-traitant (article 28 du RGPD) ; un accord de traitement des données est annexé à chaque contrat.</p></div></section>
+</main>
+<footer class="bg-night text-white/60 mt-10">
+<div class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10 text-sm">
+<div><p class="text-white text-lg font-bold tracking-tight">CLICKDROIT</p><a href="/audit-gratuit" class="mt-6 inline-flex bg-white text-ink px-5 py-2 rounded-full font-medium">Audit gratuit</a></div>
+<ul class="space-y-2"><li><a href="/experts-comptables" class="hover:text-white">Experts-comptables</a></li><li><a href="/btp-assistant-vocal" class="hover:text-white">BTP</a></li><li><a href="/offres-tarifs" class="hover:text-white">Offres &amp; tarifs</a></li><li><a href="/a-propos" class="hover:text-white">À propos</a></li><li><a href="/contact" class="hover:text-white">Contact</a></li></ul>
+<ul class="space-y-2"><li><a href="/mentions-legales" class="hover:text-white">Mentions légales et données personnelles</a></li><li><a href="/contact" class="hover:text-white">Contact</a></li></ul>
+</div>
+<div class="max-w-6xl mx-auto px-6 pb-8 text-xs text-white/40">© 2026 CLICKDROIT</div>
+</footer>
+</body>
+</html>

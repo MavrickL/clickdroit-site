@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacter CLICKDROIT</title>
+<meta name="description" content="Une question sur l'automatisation de votre cabinet ou de votre entreprise du BTP ? Écrivez-nous ou réservez directement un audit gratuit.">
+<link rel="canonical" href="https://clickdroit.fr/contact">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="CLICKDROIT">
+<meta property="og:title" content="Contacter CLICKDROIT">
+<meta property="og:description" content="Une question sur l'automatisation de votre cabinet ou de votre entreprise du BTP ? Écrivez-nous ou réservez directement un audit gratuit.">
+<meta property="og:url" content="https://clickdroit.fr/contact">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{sans:['"DM Sans"','Arial','sans-serif']},colors:{ink:'#111113',night:'#0a0a0c',soft:'#f0f0f2',paper:'#f7f7f8',line:'#e8e8e8',mute:'#5f5f66'}}}}</script>
+<style>
+body{letter-spacing:-.01em}
+@keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee{animation:marqueeScroll 30s linear infinite}
+.reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+.js .reveal:not(.in){opacity:0;transform:translateY(24px)}
+.dark li{background:#141420;color:rgba(255,255,255,.8)}
+@media (prefers-reduced-motion:reduce){.marquee{animation:none}.js .reveal:not(.in){opacity:1;transform:none}}
+</style>
+<script>document.documentElement.classList.add('js');addEventListener('DOMContentLoaded',()=>{const o=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>o.observe(el));setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')),2500)})</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "CLICKDROIT", "url": "https://clickdroit.fr/", "description": "Intégrateur IA et automatisation pour cabinets d'expertise comptable et entreprises du BTP."}</script>
+</head>
+<body class="bg-white text-ink antialiased font-sans">
+<header class="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-line/70">
+<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+<a href="/" class="text-lg font-bold tracking-tight">CLICKDROIT</a>
+<nav class="hidden md:flex gap-7 text-sm text-mute"><a href="/experts-comptables" class="hover:text-ink transition">Experts-comptables</a><a href="/btp-assistant-vocal" class="hover:text-ink transition">BTP</a><a href="/offres-tarifs" class="hover:text-ink transition">Offres &amp; tarifs</a><a href="/a-propos" class="hover:text-ink transition">À propos</a><a href="/contact" class="hover:text-ink transition">Contact</a></nav>
+<a href="/audit-gratuit" class="bg-ink text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-black transition">Audit gratuit</a>
+</div>
+<nav class="md:hidden max-w-6xl mx-auto px-6 pb-3 flex gap-5 overflow-x-auto text-sm text-mute whitespace-nowrap"><a href="/experts-comptables" class="hover:text-ink transition">Experts-comptables</a><a href="/btp-assistant-vocal" class="hover:text-ink transition">BTP</a><a href="/offres-tarifs" class="hover:text-ink transition">Offres &amp; tarifs</a><a href="/a-propos" class="hover:text-ink transition">À propos</a><a href="/contact" class="hover:text-ink transition">Contact</a></nav>
+</header>
+<main class="max-w-6xl mx-auto px-6">
+<section class="pt-20 md:pt-28 pb-10 reveal "><h1 class="text-[2.6rem] leading-[1.05] md:text-7xl font-semibold tracking-tight text-ink max-w-4xl ">Nous écrire ou nous appeler.</h1></section><p class="max-w-3xl">Le plus simple pour commencer est l'audit gratuit de 45 minutes.</p><div class="mt-4 mb-10"><a href="/audit-gratuit" class="inline-flex items-center gap-2 bg-ink text-white pl-6 pr-2 py-2 rounded-full font-medium hover:bg-black transition group">Réserver mon audit gratuit<span class="w-8 h-8 rounded-full bg-white text-ink flex items-center justify-center group-hover:translate-x-0.5 transition">→</span></a></div><!-- TODO [need: adresse de contact (e-mail)] --><!-- TODO [need: numéro de téléphone] --><!-- TODO [need: interlocuteur : nom et rôle] --><!-- TODO [need: horaires de réponse] --><section class="py-14 md:py-20 reveal"><h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-ink mb-8 max-w-3xl">Formulaire</h2><div class="text-mute text-[1.05rem] leading-relaxed space-y-4"><!-- TODO [need: destination technique du formulaire — formulaire désactivé tant qu'elle n'est pas définie] --><!-- TODO [need: délai de réponse pour le message de confirmation « Merci. Nous vous répondons sous … »] --><form class="grid gap-4 max-w-xl" onsubmit="return false"><label>Nom<input class="mt-1 w-full bg-soft border border-line rounded-[1em] px-4 py-3" name="nom" required></label><label>Société<input class="mt-1 w-full bg-soft border border-line rounded-[1em] px-4 py-3" name="societe"></label><label>Secteur<select class="mt-1 w-full bg-soft border border-line rounded-[1em] px-4 py-3" name="secteur"><option>Cabinet d'expertise comptable</option><option>BTP</option><option>Autre</option></select></label><label>E-mail<input type="email" class="mt-1 w-full bg-soft border border-line rounded-[1em] px-4 py-3" name="email" required></label><label>Téléphone (facultatif)<input type="tel" class="mt-1 w-full bg-soft border border-line rounded-[1em] px-4 py-3" name="tel"></label><label>Votre message<textarea class="mt-1 w-full bg-soft border border-line rounded-[1em] px-4 py-3" rows="5" name="message" required></textarea></label><label class="flex gap-2 items-start text-sm"><input type="checkbox" required class="mt-1"> <span>J'accepte que CLICKDROIT utilise ces informations pour me répondre. <a href="/mentions-legales#donnees" class="text-ink underline underline-offset-4 underline">Données personnelles</a></span></label><button type="submit" disabled class="bg-ink text-white px-6 py-3 rounded-full font-medium opacity-60 cursor-not-allowed">Envoyer</button></form></div></section>
+</main>
+<footer class="bg-night text-white/60 mt-10">
+<div class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10 text-sm">
+<div><p class="text-white text-lg font-bold tracking-tight">CLICKDROIT</p><a href="/audit-gratuit" class="mt-6 inline-flex bg-white text-ink px-5 py-2 rounded-full font-medium">Audit gratuit</a></div>
+<ul class="space-y-2"><li><a href="/experts-comptables" class="hover:text-white">Experts-comptables</a></li><li><a href="/btp-assistant-vocal" class="hover:text-white">BTP</a></li><li><a href="/offres-tarifs" class="hover:text-white">Offres &amp; tarifs</a></li><li><a href="/a-propos" class="hover:text-white">À propos</a></li><li><a href="/contact" class="hover:text-white">Contact</a></li></ul>
+<ul class="space-y-2"><li><a href="/mentions-legales" class="hover:text-white">Mentions légales et données personnelles</a></li><li><a href="/contact" class="hover:text-white">Contact</a></li></ul>
+</div>
+<div class="max-w-6xl mx-auto px-6 pb-8 text-xs text-white/40">© 2026 CLICKDROIT</div>
+</footer>
+</body>
+</html>
