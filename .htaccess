@@ -1,0 +1,17 @@
+# PROPOSITION — à valider par Mavrick avant toute mise en ligne (Infomaniak, Apache).
+Options -Indexes
+DirectoryIndex index.html
+
+# Forcer HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirections 301 des anciennes URL (ancienne offre rédaction SEO).
+# Constat au 13/10/2026 : l'ancien site est une page unique (/) ; tous ses liens
+# sont des ancres (#comment-ca-marche, #tarifs, #faq) ou "#". Aucune autre URL
+# n'a été trouvée (robots.txt et sitemap.xml absents). Seule redirection utile :
+Redirect 301 /index.html /
+# Ajouter ici toute ancienne URL que Mavrick connaîtrait (Search Console, liens externes).
+
+ErrorDocument 404 /
