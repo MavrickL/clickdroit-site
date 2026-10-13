@@ -14,4 +14,3 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 Redirect 301 /index.html /
 # Ajouter ici toute ancienne URL que Mavrick connaîtrait (Search Console, liens externes).
 
-ErrorDocument 404 /
