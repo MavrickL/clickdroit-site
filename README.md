@@ -11,4 +11,4 @@ npm run build
 npm run preview
 ```
 
-Le build produit `dist/`. La mise en ligne se fait à la main sur Infomaniak (pas de déploiement automatique). Avant d'envoyer les fichiers, lancer `npm run build:strict` : il échoue tant qu'une information légale obligatoire est vide.
+Le build produit `dist/`. La mise en ligne se fait à la main sur Infomaniak (pas de déploiement automatique) : voir [DEPLOIEMENT.md](DEPLOIEMENT.md). `npm run build:strict` échoue tant qu'une information légale obligatoire est vide ; le site part avec `npm run build`, et les pages légales restent non indexées.
