@@ -5,31 +5,62 @@ interface Props {
   metier?: string;
   eager?: boolean;
   noteStyle?: string;
+  source?: string;
 }
-const { metier, eager = false, noteStyle = "text-align:center;margin:0 0 16px" } = Astro.props;
-const linked = Boolean(site.calLink);
+const {
+  metier,
+  eager = false,
+  noteStyle = "text-align:center;margin:0 0 16px",
+  source = "reservation",
+} = Astro.props;
+
+const link = site.calLink?.trim() || null;
+const isCalCom = Boolean(link && /(^|\.)cal\.com$/i.test(new URL(link).hostname));
 ---
 <p class="small muted" style={noteStyle}>Choisissez un créneau. Vous recevez le lien de la visio par e-mail.</p>
 <p class="cal__done" role="status" hidden><strong>C'est noté.</strong> Avant l'appel, notez juste les 3 tâches qui vous agacent le plus. On part de là.</p>
-<div
-  class={linked ? "cal" : "cal cal--empty"}
-  id="cal-inline"
-  data-metier={metier}
-  data-eager={eager ? "" : undefined}
-  data-cal-link={site.calLink ?? undefined}
->
-  {
-    !linked && (
+{
+  isCalCom ? (
+    <div
+      class="cal"
+      id="cal-inline"
+      data-metier={metier}
+      data-eager={eager ? "" : undefined}
+      data-cal-link={link}
+    />
+  ) : (
+    <div class="cal cal--empty" id="cal-inline" data-metier={metier}>
       <div class="cal__fallback">
-        <p class="h3">La réservation en ligne ouvre très bientôt.</p>
-        <p class="muted">En attendant, contactez Mavrick directement.</p>
-        <p>
-          Par e-mail&nbsp;: <strong>{site.email}</strong>
-        </p>
+        {link ? (
+          <>
+            <p class="h3">{site.bookingLabel}</p>
+            <p class="muted">30 minutes en visio, sans engagement.</p>
+            <p>
+              <a
+                class="cd-btn cd-btn--primary"
+                href={link}
+                data-event="clic_audit"
+                data-source={source}
+                rel="noopener"
+                target="_blank"
+              >
+                {site.bookingLabel}
+              </a>
+            </p>
+          </>
+        ) : (
+          <>
+            <p class="h3">La réservation en ligne ouvre très bientôt.</p>
+            <p class="muted">En attendant, contactez Mavrick directement.</p>
+            <p>
+              Par e-mail&nbsp;: <strong>{site.email}</strong>
+            </p>
+          </>
+        )}
       </div>
-    )
-  }
-</div>
+    </div>
+  )
+}
 <script>
   import "../scripts/cal-embed.js";
 </script>

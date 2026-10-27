@@ -38,9 +38,10 @@ export const site = {
   },
   /**
    * Réservation. null = le bloc « La réservation en ligne ouvre très bientôt ».
-   * Une URL (agenda Google ou Cal.com) affiche le bouton de réservation.
+   * Une URL Cal.com intègre l'agenda. Toute autre URL (agenda Google) affiche
+   * le bouton `bookingLabel`, sans charger le script Cal.com.
    */
-  calLink: null as string | null,
+  calLink: "https://calendar.app.google/JHuG9bUeeuBmpLwKA",
   bookingLabel: "Réserver mon audit",
   kitsReady: false,
   kitWebhook: null as string | null,
