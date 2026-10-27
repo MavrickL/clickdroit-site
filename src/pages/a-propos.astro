@@ -9,7 +9,10 @@ import p1 from "../markup/a-propos/p1.html?raw";
 import p2 from "../markup/a-propos/p2.html?raw";
 
 const name = founderDisplayName();
-let about = p1.replace("Derrière ClickDroit, il y a Mavrick.", `Derrière ClickDroit, il y a ${name}.`);
+let about = p1
+  .replace("Derrière ClickDroit, il y a Mavrick.", `Derrière ClickDroit, il y a ${name}.`)
+  .replace("Parler à Mavrick", `Parler à ${name}`)
+  .replace("Parlez-en directement avec Mavrick.", `Parlez-en directement avec ${name}.`);
 const photo = site.founder.photo?.trim();
 if (photo) {
   about = about.replace(
@@ -19,7 +22,7 @@ if (photo) {
 }
 const ld = jsonLd.replace('"name":"Mavrick"', `"name":${JSON.stringify(name)}`);
 ---
-<BaseLayout title="Agence d'automatisation IA à Rouen | ClickDroit" description="ClickDroit, c'est Mavrick : un développeur web rouennais qui installe des automatisations IA chez les artisans et les avocats. Son parcours, sa façon de travailler." pathname="/a-propos" jsonLd={ld}>
+<BaseLayout title="Agence d'automatisation IA à Rouen | ClickDroit" description="ClickDroit, c'est Mavrick Lintanf : un développeur web rouennais qui installe des automatisations IA chez les artisans et les avocats. Son parcours, sa façon de travailler." pathname="/a-propos" jsonLd={ld}>
 <main id="contenu">
 <Fragment set:html={p0} />
 <Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "À propos"}]} />

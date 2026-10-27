@@ -1,13 +1,7 @@
 /**
  * Configuration du site, retrouvée dans le bundle KitForm du live (27/10/2026).
- * Les textes affichés lisent ce fichier. Un champ vide masque le bloc correspondant
- * dès que la correction « honnêteté » est en place (voir les commentaires).
+ * Les textes affichés lisent ce fichier. Un champ vide masque le bloc correspondant.
  */
-export interface Availability {
-  places: number;
-  month: string;
-}
-
 export const site = {
   name: "ClickDroit",
   url: "https://clickdroit.fr",
@@ -17,19 +11,14 @@ export const site = {
   email: "mavrick@clickdroit.fr",
   /** Numéro public. Tant qu'il est vide, on ne promet pas un appel téléphonique. */
   phone: null as string | null,
-  /**
-   * Pastille « N nouveaux projets en {mois} ».
-   * null = la pastille et la ligne du menu mobile sont masquées.
-   */
-  availability: null as Availability | null,
   founder: {
     name: "Mavrick",
-    /** Nom complet. Masqué tant qu'il est vide : on affiche `name`. */
-    fullName: null as string | null,
+    /** Nom complet, affiché partout où la page parle du fondateur. */
+    fullName: "Mavrick Lintanf",
     yearsAsDev: 7,
     /** Chemin public de la photo (ex. "/fondateur.jpg"). Masquée tant qu'elle est vide. */
     photo: null as string | null,
-    photoAlt: "Portrait de Mavrick, fondateur de ClickDroit",
+    photoAlt: "Portrait de Mavrick Lintanf, fondateur de ClickDroit",
     anecdote: null as string | null,
     mavrickMediaYear: "2019",
     clickdroitYear: "2026",

@@ -51,7 +51,7 @@ const isCalCom = Boolean(link && /(^|\.)cal\.com$/i.test(new URL(link).hostname)
         ) : (
           <>
             <p class="h3">La réservation en ligne ouvre très bientôt.</p>
-            <p class="muted">En attendant, contactez Mavrick directement.</p>
+            <p class="muted">En attendant, contactez {site.founder.fullName ?? site.founder.name} directement.</p>
             <p>
               Par e-mail&nbsp;: <strong>{site.email}</strong>
             </p>

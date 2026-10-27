@@ -2,17 +2,19 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CalEmbed from "../components/CalEmbed.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { founderDisplayName } from "../config/site";
 import jsonLd from "../markup/audit/ld.json?raw";
 import p0 from "../markup/audit/p0.html?raw";
 import p1 from "../markup/audit/p1.html?raw";
 import p2 from "../markup/audit/p2.html?raw";
+const who = p2.replace("Avec Mavrick", `Avec ${founderDisplayName()}`);
 ---
-<BaseLayout title="Audit automatisation IA gratuit (30 min) | ClickDroit" description="Réservez 30 minutes en visio avec Mavrick : on repère vos 3 tâches les plus coûteuses et vous repartez avec un plan, même sans travailler avec nous." pathname="/audit" jsonLd={jsonLd} ctaLong="Choisir un créneau ↓" ctaShort="Créneau ↓">
+<BaseLayout title="Audit automatisation IA gratuit (30 min) | ClickDroit" description="Réservez 30 minutes en visio avec Mavrick Lintanf : on repère vos 3 tâches les plus coûteuses et vous repartez avec un plan, même sans travailler avec nous." pathname="/audit" jsonLd={jsonLd} ctaLong="Choisir un créneau ↓" ctaShort="Créneau ↓">
 <main id="contenu">
 <Fragment set:html={p0} />
 <Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "Réserver un audit"}]} />
 <Fragment set:html={p1} />
 <CalEmbed eager noteStyle="margin:0 0 12px" />
-<Fragment set:html={p2} />
+<Fragment set:html={who} />
 </main>
 </BaseLayout>
