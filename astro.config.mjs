@@ -1,21 +1,32 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import { legalIsComplete } from "./src/config/legal.ts";
 
-// Étape 1 : même sortie que le live (fichiers .html). Les URL propres arrivent ensuite.
+/** Pages volontairement hors de l'index, donc hors du sitemap. */
+const alwaysHidden = ["/automatisation-ia", "/ressources", "/404"];
+const hiddenUntilLegal = ["/mentions-legales", "/confidentialite", "/cgv", "/ia-et-conformite"];
+
+function isHidden(page) {
+  const path = new URL(page).pathname.replace(/\/$/, "") || "/";
+  if (alwaysHidden.includes(path)) return true;
+  if (!legalIsComplete() && hiddenUntilLegal.includes(path)) return true;
+  return false;
+}
+
 export default defineConfig({
   site: "https://clickdroit.fr",
-  trailingSlash: "ignore",
+  trailingSlash: "never",
   integrations: [
     sitemap({
-      filter: (page) => !page.includes("/automatisation-ia"),
+      filter: (page) => !isHidden(page),
     }),
   ],
   vite: {
     plugins: [tailwindcss()],
   },
   build: {
-    format: "file",
+    format: "directory",
     inlineStylesheets: "always",
   },
 });

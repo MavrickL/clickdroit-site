@@ -1,0 +1,38 @@
+# ClickDroit — Apache (Infomaniak)
+# URL propres, HTTPS, domaine nu, cache des fichiers hashés.
+
+RewriteEngine On
+
+# www → https://clickdroit.fr
+RewriteCond %{HTTP_HOST} ^www\.clickdroit\.fr$ [NC]
+RewriteRule ^ https://clickdroit.fr%{REQUEST_URI} [L,R=301]
+
+# http → https (direct ou derrière le proxy Infomaniak)
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://clickdroit.fr%{REQUEST_URI} [L,R=301]
+
+# Anciennes URL .html (y compris /index.html) → URL propre
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# /page/ → /page (la racine garde son /)
+RewriteCond %{REQUEST_URI} ^/(.+)/$
+RewriteRule ^ /%1 [R=301,L]
+
+# /page sert page/index.html sans redirection
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(.+?)/?$ $1/index.html [L]
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/_astro/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>
