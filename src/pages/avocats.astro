@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import MetierHero from "../components/metier/Hero.astro";
+import Automations from "../components/Automations.astro";
+import KitForm from "../components/KitForm.astro";
+import jsonLd from "../markup/avocats/ld.json?raw";
+import p0 from "../markup/avocats/p0.html?raw";
+import p1 from "../markup/avocats/p1.html?raw";
+import p2 from "../markup/avocats/p2.html?raw";
+import p3 from "../markup/avocats/p3.html?raw";
+import heroHtml from "../markup/avocats/hero.html?raw";
+import autoHtml from "../markup/avocats/auto.html?raw";
+---
+<BaseLayout title="Automatisation IA pour cabinet d'avocats | ClickDroit" description="Pré-qualification, collecte de pièces, relances de provisions : votre cabinet tourne pendant que vous plaidez. Données pseudonymisées, hébergées en Europe." pathname="/avocats" jsonLd={jsonLd}>
+<main id="contenu">
+<Fragment set:html={p0} />
+<MetierHero><Fragment set:html={heroHtml} /></MetierHero>
+<Fragment set:html={p1} />
+<Automations><Fragment set:html={autoHtml} /></Automations>
+<Fragment set:html={p2} />
+<CalEmbed metier="Avocat" />
+<Fragment set:html={p3} />
+<KitForm metier="cabinet" source="avocats-kit" />
+</main>
+</BaseLayout>

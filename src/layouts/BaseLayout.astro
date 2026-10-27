@@ -1,0 +1,65 @@
+---
+import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { site } from "../config/site";
+import bricolageLatin from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url";
+import atkinsonLatin from "@fontsource-variable/atkinson-hyperlegible-next/files/atkinson-hyperlegible-next-latin-wght-normal.woff2?url";
+
+interface Props {
+  title: string;
+  description: string;
+  pathname: string;
+  noindex?: boolean;
+  jsonLd?: string;
+  ctaHref?: string;
+  ctaLong?: string;
+  ctaShort?: string;
+}
+const {
+  title,
+  description,
+  pathname,
+  noindex = false,
+  jsonLd,
+  ctaHref = "#audit",
+  ctaLong = "Réserver mon audit gratuit",
+  ctaShort = "Audit gratuit",
+} = Astro.props;
+const canonical = new URL(pathname, Astro.site).href;
+const ogTitle = title;
+const ogDescription = description;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1317" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href={bricolageLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={atkinsonLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={canonical} />
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <SiteHeader auditHref={ctaHref} ctaLong={ctaLong} ctaShort={ctaShort} />
+    <slot />
+    <SiteFooter />
+  </body>
+</html>
+<script>
+  import "../scripts/track-clicks.js";
+</script>

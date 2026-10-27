@@ -1,0 +1,1 @@
+import"./clickdroit.js";document.querySelectorAll(`[data-menu]`).forEach(e=>window.ClickDroit.contextMenu(e));

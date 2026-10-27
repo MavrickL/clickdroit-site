@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import jsonLd from "../markup/cgv/ld.json?raw";
+import p0 from "../markup/cgv/p0.html?raw";
+import p1 from "../markup/cgv/p1.html?raw";
+---
+<BaseLayout title="Conditions générales de vente | ClickDroit" description="Conditions générales de vente des prestations ClickDroit : commande, prix fixe, paiement, installation, abonnement, garantie et responsabilité." pathname="/cgv" noindex jsonLd={jsonLd} ctaHref="/audit">
+<main id="contenu">
+<Fragment set:html={p0} />
+<Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "Conditions générales de vente"}]} />
+<Fragment set:html={p1} />
+</main>
+</BaseLayout>

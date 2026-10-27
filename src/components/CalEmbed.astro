@@ -1,0 +1,35 @@
+---
+import { site } from "../config/site";
+
+interface Props {
+  metier?: string;
+  eager?: boolean;
+  noteStyle?: string;
+}
+const { metier, eager = false, noteStyle = "text-align:center;margin:0 0 16px" } = Astro.props;
+const linked = Boolean(site.calLink);
+---
+<p class="small muted" style={noteStyle}>Choisissez un créneau. Vous recevez le lien de la visio par e-mail.</p>
+<p class="cal__done" role="status" hidden><strong>C'est noté.</strong> Avant l'appel, notez juste les 3 tâches qui vous agacent le plus. On part de là.</p>
+<div
+  class={linked ? "cal" : "cal cal--empty"}
+  id="cal-inline"
+  data-metier={metier}
+  data-eager={eager ? "" : undefined}
+  data-cal-link={site.calLink ?? undefined}
+>
+  {
+    !linked && (
+      <div class="cal__fallback">
+        <p class="h3">La réservation en ligne ouvre très bientôt.</p>
+        <p class="muted">En attendant, contactez Mavrick directement.</p>
+        <p>
+          Par e-mail&nbsp;: <strong>{site.email}</strong>
+        </p>
+      </div>
+    )
+  }
+</div>
+<script>
+  import "../scripts/cal-embed.js";
+</script>

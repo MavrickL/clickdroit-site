@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import jsonLd from "../markup/automatisation-ia/ld.json?raw";
+import p0 from "../markup/automatisation-ia/p0.html?raw";
+import p1 from "../markup/automatisation-ia/p1.html?raw";
+import p2 from "../markup/automatisation-ia/p2.html?raw";
+---
+<BaseLayout title="Automatisation IA près de chez vous | ClickDroit" description="ClickDroit est basé à Rouen et installe des automatisations IA partout en France, en visio, pour les artisans du BTP et les cabinets d'avocats." pathname="/automatisation-ia" noindex jsonLd={jsonLd}>
+<main id="contenu">
+<Fragment set:html={p0} />
+<Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "Automatisation IA"}]} />
+<Fragment set:html={p1} />
+<CalEmbed />
+<Fragment set:html={p2} />
+</main>
+</BaseLayout>

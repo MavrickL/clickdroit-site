@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import Hero from "../components/Hero.astro";
+import Explorer from "../components/Explorer.astro";
+import Calculator from "../components/Calculator.astro";
+import jsonLd from "../markup/index/ld.json?raw";
+import p0 from "../markup/index/p0.html?raw";
+import p1 from "../markup/index/p1.html?raw";
+import p2 from "../markup/index/p2.html?raw";
+import p3 from "../markup/index/p3.html?raw";
+import p4 from "../markup/index/p4.html?raw";
+---
+<BaseLayout title="Automatisation IA artisans et avocats | ClickDroit" description="ClickDroit installe en 10 jours des systèmes qui gèrent vos devis, relances et appels manqués. Prix fixe, hébergé en Europe. Audit gratuit." pathname="/" jsonLd={jsonLd}>
+<main id="contenu">
+<Fragment set:html={p0} />
+<Hero />
+<Fragment set:html={p1} />
+<Explorer />
+<Fragment set:html={p2} />
+<Calculator />
+<Fragment set:html={p3} />
+<CalEmbed />
+<Fragment set:html={p4} />
+</main>
+</BaseLayout>

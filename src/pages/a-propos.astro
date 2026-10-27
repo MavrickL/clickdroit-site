@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import jsonLd from "../markup/a-propos/ld.json?raw";
+import p0 from "../markup/a-propos/p0.html?raw";
+import p1 from "../markup/a-propos/p1.html?raw";
+import p2 from "../markup/a-propos/p2.html?raw";
+---
+<BaseLayout title="Agence d'automatisation IA à Rouen | ClickDroit" description="ClickDroit, c'est Mavrick : un développeur web rouennais qui installe des automatisations IA chez les artisans et les avocats. Son parcours, sa façon de travailler." pathname="/a-propos" jsonLd={jsonLd}>
+<main id="contenu">
+<Fragment set:html={p0} />
+<Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "À propos"}]} />
+<Fragment set:html={p1} />
+<CalEmbed />
+<Fragment set:html={p2} />
+</main>
+</BaseLayout>

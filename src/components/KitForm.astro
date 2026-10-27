@@ -1,0 +1,31 @@
+---
+import { site } from "../config/site";
+
+interface Props {
+  metier?: "artisan" | "cabinet";
+  source?: string;
+}
+const { metier = "artisan", source = "kit" } = Astro.props;
+---
+{
+  site.kitsReady && (
+    <form class="kit" data-kit data-source={source} novalidate>
+      <input type="text" name="site_web" tabindex="-1" autocomplete="off" hidden />
+      <label>
+        Prénom
+        <input name="prenom" type="text" autocomplete="given-name" required />
+      </label>
+      <label>
+        E-mail
+        <input name="email" type="email" autocomplete="email" required aria-describedby="kit-email-err" />
+      </label>
+      <p id="kit-email-err" hidden />
+      <input type="hidden" name="metier" value={metier} />
+      <p class="kit__msg" hidden />
+      <button class="cd-btn cd-btn--primary" type="submit">Recevoir le kit</button>
+    </form>
+  )
+}
+<script>
+  import "../scripts/kit-form.js";
+</script>

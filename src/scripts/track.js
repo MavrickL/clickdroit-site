@@ -1,0 +1,1 @@
+function e(e,t){let n=location.pathname;window.plausible?.(e,{props:{page:n,...t}})}export{e as t};

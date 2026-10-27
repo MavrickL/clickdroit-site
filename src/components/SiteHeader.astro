@@ -1,0 +1,16 @@
+---
+interface Props {
+  auditHref?: string;
+  ctaLong?: string;
+  ctaShort?: string;
+}
+const {
+  auditHref = "#audit",
+  ctaLong = "Réserver mon audit gratuit",
+  ctaShort = "Audit gratuit",
+} = Astro.props;
+---
+<header class="cd-header"><div class="cd-header__in"><a class="cd-logo" href="/" aria-label="ClickDroit, accueil">Click<span class="cd-logo__droit">Droit</span></a><nav aria-label="Navigation principale"><ul class="cd-header__nav"><li class="cd-header__drop"><button class="cd-header__link" type="button" aria-haspopup="menu" aria-controls="menu-metiers" data-menu>Métiers <span aria-hidden="true">▾</span></button><ul class="cd-menu cd-menu--pop" role="menu" id="menu-metiers" aria-label="Métiers" hidden><li><a class="cd-menu__item" role="menuitem" href="/btp" data-key="B"><span class="cd-menu__label">Artisans et BTP<span class="cd-menu__hint">Devis, relances, appels manqués</span></span><span class="cd-menu__key" aria-hidden="true">B</span></a></li><li><a class="cd-menu__item" role="menuitem" href="/avocats" data-key="A"><span class="cd-menu__label">Cabinets d&#39;avocats<span class="cd-menu__hint">Pièces, provisions, rendez-vous</span></span><span class="cd-menu__key" aria-hidden="true">A</span></a></li><li class="cd-menu__sep" role="separator"></li><li><span class="cd-menu__item" role="menuitem" aria-disabled="true"><span class="cd-menu__label">Notaires<span class="cd-menu__hint">Bientôt</span></span></span></li></ul></li><li><a class="cd-header__link" href="/offres">Offres</a></li><li><a class="cd-header__link" href="/methode">Méthode</a></li><li><a class="cd-header__link" href="/ressources">Ressources</a></li></ul></nav><div class="cd-header__end"><span class="cd-pill cd-pill--live"><span class="cd-pill__dot" aria-hidden="true"></span>Disponible : 3 nouveaux projets en novembre</span><a class="cd-btn cd-btn--primary cd-btn--s" href={auditHref} data-event="clic_audit" data-source="en-tete"><span class="cd-header__long">{ctaLong}</span><span class="cd-header__short">{ctaShort}</span></a><div class="cd-header__drop"><button class="cd-header__link cd-header__burger" type="button" aria-haspopup="menu" aria-controls="menu-mobile" data-menu>Menu</button><ul class="cd-menu cd-menu--pop menu-mobile" role="menu" id="menu-mobile" aria-label="Menu" hidden><li><a class="cd-menu__item" role="menuitem" href="/btp" data-key="B"><span class="cd-menu__label">Artisans et BTP</span><span class="cd-menu__key" aria-hidden="true">B</span></a></li><li><a class="cd-menu__item" role="menuitem" href="/avocats" data-key="A"><span class="cd-menu__label">Cabinets d&#39;avocats</span><span class="cd-menu__key" aria-hidden="true">A</span></a></li><li class="cd-menu__sep" role="separator"></li><li><a class="cd-menu__item" role="menuitem" href="/offres"><span class="cd-menu__label">Offres</span></a></li><li><a class="cd-menu__item" role="menuitem" href="/methode"><span class="cd-menu__label">Méthode</span></a></li><li><a class="cd-menu__item" role="menuitem" href="/ressources"><span class="cd-menu__label">Ressources</span></a></li><li class="cd-menu__sep" role="separator"></li><li><span class="cd-menu__item" role="menuitem" aria-disabled="true"><span class="cd-menu__label">● 3 places en novembre</span></span></li></ul></div></div></div></header>
+<script>
+  import "../scripts/header-menu.js";
+</script>
