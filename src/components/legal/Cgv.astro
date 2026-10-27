@@ -1,0 +1,116 @@
+---
+import { legal } from "../../config/legal";
+
+const editor = legal.editorName?.trim() || "";
+const seller = editor
+  ? editor.toLowerCase().includes("clickdroit")
+    ? editor
+    : `${editor} (ClickDroit)`
+  : "ClickDroit";
+const siret = legal.siret?.trim() || "";
+const schedule = legal.paymentSchedule?.trim() || "";
+const delay = legal.paymentDelay?.trim() || "";
+const interest = legal.lateInterest?.trim() || "";
+const guarantee = legal.guaranteeWording?.trim() || "";
+const cap = legal.liabilityCap?.trim() || "";
+const court = legal.court?.trim() || "";
+const showPayment = Boolean(schedule || delay || interest);
+
+const toc = [
+  { href: "#objet", label: "1. Objet et clients concernés" },
+  { href: "#prestations", label: "2. Les prestations" },
+  { href: "#commande", label: "3. Commande" },
+  { href: "#prix", label: "4. Prix" },
+  showPayment ? { href: "#paiement", label: "5. Paiement" } : null,
+  { href: "#installation", label: "6. Installation et délais" },
+  { href: "#client", label: "7. Ce que le client fournit" },
+  { href: "#abonnement", label: "8. Abonnement" },
+  guarantee ? { href: "#garantie", label: "9. Garantie des heures gagnées" } : null,
+  { href: "#ia", label: "10. Validation humaine et limites de l'IA" },
+  { href: "#propriete", label: "11. Propriété des livrables" },
+  { href: "#donnees", label: "12. Données et confidentialité" },
+  cap ? { href: "#responsabilite", label: "13. Responsabilité" } : null,
+  { href: "#fin", label: "14. Fin du contrat et réversibilité" },
+  { href: "#litiges", label: "15. Droit applicable et litiges" },
+].filter((item): item is { href: string; label: string } => item !== null);
+---
+<div class="legal__grid">
+  <div class="legal__intro">
+    <h1 class="h2" id="titre" style="font-size:clamp(32px,6vw,44px);line-height:1.1">Conditions générales de vente</h1>
+    {legal.updated && <p class="small muted" style="margin:12px 0 0">Dernière mise à jour&nbsp;: {legal.updated}</p>}
+  </div>
+  <nav class="legal__toc" aria-label="Sommaire">
+    <p class="legal__toc-title">Sommaire</p>
+    <ul class="cd-menu">
+      {toc.map((item) => (
+        <li><a class="cd-menu__item" href={item.href}><span class="cd-menu__label">{item.label}</span></a></li>
+      ))}
+    </ul>
+  </nav>
+  <div class="legal__content">
+    <h2 id="objet">1. Objet et clients concernés</h2>
+    <p>
+      Ces conditions s'appliquent aux prestations vendues par {seller}{siret ? `, SIRET ${siret}` : ""}{legal.address ? `, ${legal.address}` : ""}. Elles s'adressent aux professionnels&nbsp;: entreprises, artisans, professions libérales. Elles prévalent sur les conditions d'achat du client, sauf accord écrit contraire.
+    </p>
+    <h2 id="prestations">2. Les prestations</h2>
+    <ul>
+      <li><strong>Audit gratuit</strong>&nbsp;: un échange de 30 minutes en visio, sans engagement.</li>
+      <li><strong>Formules clé en main</strong> (Premier robot, Pilote automatique) et <strong>sur mesure</strong>&nbsp;: conception, installation et mise en service d'automatisations, formation de l'équipe, puis abonnement de suivi. Le détail est sur la page <a class="link" href="/offres">Offres</a>.</li>
+    </ul>
+    <p>Le contenu exact de chaque prestation est celui de la proposition remise après l'audit.</p>
+    <h2 id="commande">3. Commande</h2>
+    <p>Après l'audit, ClickDroit remet une proposition écrite&nbsp;: périmètre, délai, prix fixe et nombre d'heures gagnées visé chaque mois. La commande est ferme à la signature de cette proposition par le client.</p>
+    <h2 id="prix">4. Prix</h2>
+    <p>Les prix sont fixes, exprimés hors taxes, et indiqués dans la proposition. Le prix d'installation ne change pas en cours de projet, même si l'installation demande plus de temps que prévu. Une automatisation hors du périmètre signé fait l'objet d'une nouvelle proposition à prix fixe.</p>
+    {showPayment && (
+      <>
+        <h2 id="paiement">5. Paiement</h2>
+        <ul>
+          {schedule && <li>Installation&nbsp;: {schedule}.</li>}
+          {delay && <li>Délai de paiement des factures&nbsp;: {delay}.</li>}
+          {interest && (
+            <li>
+              En cas de retard, des pénalités sont dues au taux de {interest}, ainsi qu'une indemnité forfaitaire pour frais de recouvrement de 40&nbsp;€ (articles L441-10 et D441-5 du Code de commerce).
+            </li>
+          )}
+        </ul>
+      </>
+    )}
+    <h2 id="installation">6. Installation et délais</h2>
+    <p>Pour les formules clé en main, l'installation est réalisée en 10 jours ouvrés à compter du point de lancement, à condition que le client ait fourni les accès et exemples demandés (article 7). Pour une prestation sur mesure, le délai est fixé dans la proposition. Un retard dans les éléments fournis par le client décale d'autant la mise en service.</p>
+    <h2 id="client">7. Ce que le client fournit</h2>
+    <ul>
+      <li>Un interlocuteur disponible pour les points prévus.</li>
+      <li>Des accès à ses outils, créés pour l'occasion et retirables à tout moment.</li>
+      <li>Ses modèles&nbsp;: grille de prix, devis types, courriers types.</li>
+      <li>Ses validations pendant les tests.</li>
+    </ul>
+    <h2 id="abonnement">8. Abonnement</h2>
+    <p>L'abonnement couvre l'hébergement, la surveillance, la maintenance et le rapport mensuel des heures gagnées, ainsi que les améliorations prévues par la formule. Durée et résiliation&nbsp;: abonnement mensuel, avec une durée minimale d'un mois, puis résiliable à tout moment sans préavis.</p>
+    {guarantee && (
+      <>
+        <h2 id="garantie">9. Garantie des heures gagnées</h2>
+        <p>{guarantee}</p>
+      </>
+    )}
+    <h2 id="ia">10. Validation humaine et limites de l'IA</h2>
+    <p>Les systèmes installés préparent&nbsp;; le client valide. Rien n'est envoyé à un tiers sans l'accord du client, sauf les envois qu'il a choisi d'automatiser. Les contenus produits par l'IA peuvent comporter des erreurs&nbsp;: leur vérification reste de la responsabilité du client. ClickDroit est tenu à une obligation de moyens.</p>
+    <h2 id="propriete">11. Propriété des livrables</h2>
+    <p>Les automatisations livrées appartiennent au client. Il les récupère toutes, y compris en fin de contrat.</p>
+    <h2 id="donnees">12. Données et confidentialité</h2>
+    <p>Pour les données personnelles traitées par les automatisations, ClickDroit agit comme sous-traitant du client. Un contrat de sous-traitance (article 28 du RGPD) est signé avant la mise en service, avec la liste des sous-traitants ultérieurs. Les informations échangées sont confidentielles, y compris celles couvertes par le secret professionnel du client.</p>
+    {cap && (
+      <>
+        <h2 id="responsabilite">13. Responsabilité</h2>
+        <p>La responsabilité de ClickDroit est limitée aux dommages directs et plafonnée à {cap}.</p>
+      </>
+    )}
+    <h2 id="fin">14. Fin du contrat et réversibilité</h2>
+    <p>À la fin du contrat&nbsp;: le client récupère toutes ses automatisations, qui lui appartiennent.</p>
+    <h2 id="litiges">15. Droit applicable et litiges</h2>
+    <p>
+      Ces conditions sont soumises au droit français. En cas de désaccord, les parties cherchent d'abord une solution amiable.
+      {court && <> À défaut, le litige est porté devant {court}.</>}
+    </p>
+  </div>
+</div>

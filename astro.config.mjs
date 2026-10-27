@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { legalIsComplete } from "./src/config/legal.ts";
+import { legalGuard } from "./src/integrations/legal-guard.ts";
 
 /** Pages volontairement hors de l'index, donc hors du sitemap. */
 const alwaysHidden = ["/automatisation-ia", "/ressources", "/404"];
@@ -18,6 +19,7 @@ export default defineConfig({
   site: "https://clickdroit.fr",
   trailingSlash: "never",
   integrations: [
+    legalGuard(),
     sitemap({
       filter: (page) => !isHidden(page),
     }),

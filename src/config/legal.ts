@@ -18,10 +18,18 @@ export const legal = {
   phone: null as string | null,
   publicationDirector: null as string | null,
   privacyEmail: null as string | null,
+  /**
+   * Hébergeur du site. Coordonnées relevées le 27 octobre 2026 sur
+   * https://www.infomaniak.com/fr/cgv/mentions-legales (nom, adresse,
+   * registre du commerce, IDE). Le formulaire de contact public
+   * https://contact.infomaniak.com redirige vers https://www.infomaniak.com/fr/aide.
+   * Leur page de mentions ne publie pas de numéro de téléphone.
+   */
   host: {
-    name: null as string | null,
-    address: null as string | null,
-    contact: null as string | null,
+    name: "Infomaniak Network SA",
+    address:
+      "Rue Eugène Marziano 25, 1227 Les Acacias (GE), Suisse. Registre du commerce de Genève : CH-660.0.059.996-1. IDE : CHE-103.167.648.",
+    contact: "https://www.infomaniak.com/fr/aide",
   },
   processors: null as string | null,
   prospectRetention: null as string | null,

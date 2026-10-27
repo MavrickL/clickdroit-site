@@ -1,14 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Mentions from "../components/legal/Mentions.astro";
+import { legalIsComplete } from "../config/legal";
 import jsonLd from "../markup/mentions-legales/ld.json?raw";
 import p0 from "../markup/mentions-legales/p0.html?raw";
-import p1 from "../markup/mentions-legales/p1.html?raw";
 ---
-<BaseLayout title="Mentions légales | ClickDroit" description="Mentions légales du site ClickDroit : éditeur, hébergeur, propriété intellectuelle et données personnelles." pathname="/mentions-legales" noindex jsonLd={jsonLd} ctaHref="/audit">
+<BaseLayout title="Mentions légales | ClickDroit" description="Mentions légales du site ClickDroit : éditeur, hébergeur, propriété intellectuelle et données personnelles." pathname="/mentions-legales" noindex={!legalIsComplete()} jsonLd={jsonLd} ctaHref="/audit">
 <main id="contenu">
 <Fragment set:html={p0} />
 <Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "Mentions légales"}]} />
-<Fragment set:html={p1} />
+<Mentions />
+<Fragment set:html={"</div></article>"} />
 </main>
 </BaseLayout>
