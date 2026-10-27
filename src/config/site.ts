@@ -21,7 +21,7 @@ export const site = {
    * Pastille « N nouveaux projets en {mois} ».
    * null = la pastille et la ligne du menu mobile sont masquées.
    */
-  availability: { places: 3, month: "novembre" } as Availability | null,
+  availability: null as Availability | null,
   founder: {
     name: "Mavrick",
     /** Nom complet. Masqué tant qu'il est vide : on affiche `name`. */

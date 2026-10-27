@@ -1,0 +1,42 @@
+---
+import { founderDisplayName, site } from "../config/site";
+
+const name = founderDisplayName();
+const photo = site.founder.photo?.trim() || "";
+const phone = Boolean(site.phone?.trim());
+const years = site.founder.yearsAsDev;
+---
+<section class="section" aria-labelledby="fondateur">
+  <div class="wrap founder">
+    <div class="founder__photo">
+      {
+        photo ? (
+          <img src={photo} alt={site.founder.photoAlt} width="800" height="1000" />
+        ) : (
+          <span class="cd-logo" aria-label="ClickDroit">
+            Click<span class="cd-logo__droit">Droit</span>
+          </span>
+        )
+      }
+    </div>
+    <div style="display:grid;gap:20px">
+      <span class="cd-eyebrow" style="justify-self:start">Le fondateur</span>
+      <h2 class="h2" id="fondateur">
+        Derrière ClickDroit, il y a {name}.{phone && " Et il décroche son téléphone."}
+      </h2>
+      <div class="prose">
+        <p>{years} ans à construire des sites et des outils pour des entreprises normandes, sous la marque Mavrick Media.</p>
+        <p>Puis le constat&nbsp;: mes clients ne manquaient pas de site. Ils manquaient de temps.</p>
+        <p>ClickDroit est né pour leur rendre ce temps.</p>
+        <p>J'utilise moi-même, chaque jour, les systèmes que j'installe chez vous.</p>
+      </div>
+      <div class="aside-box">
+        <p><strong>Pourquoi ClickDroit&#8239;?</strong> Le clic droit, c'est le geste qui ouvre les raccourcis. Un clic, et la tâche est faite. C'est exactement ce qu'on installe chez vous.</p>
+      </div>
+      <div class="actions" style="margin-top:0">
+        <a class="cd-btn cd-btn--secondary" href="#audit" data-event="clic_audit" data-source="accueil-fondateur">Parler à {site.founder.name}</a>
+        <a class="cd-btn cd-btn--link" href={site.social.youtube} rel="noopener">Voir la chaîne YouTube →</a>
+      </div>
+    </div>
+  </div>
+</section>

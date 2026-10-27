@@ -2,16 +2,28 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CalEmbed from "../components/CalEmbed.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { founderDisplayName, site } from "../config/site";
 import jsonLd from "../markup/a-propos/ld.json?raw";
 import p0 from "../markup/a-propos/p0.html?raw";
 import p1 from "../markup/a-propos/p1.html?raw";
 import p2 from "../markup/a-propos/p2.html?raw";
+
+const name = founderDisplayName();
+let about = p1.replace("Derrière ClickDroit, il y a Mavrick.", `Derrière ClickDroit, il y a ${name}.`);
+const photo = site.founder.photo?.trim();
+if (photo) {
+  about = about.replace(
+    '<div class="founder__photo founder__photo--empty"><span class="cd-logo" aria-label="ClickDroit">Click<span class="cd-logo__droit">Droit</span></span></div>',
+    `<div class="founder__photo"><img src="${photo}" alt="${site.founder.photoAlt}" width="800" height="1000"></div>`,
+  );
+}
+const ld = jsonLd.replace('"name":"Mavrick"', `"name":${JSON.stringify(name)}`);
 ---
-<BaseLayout title="Agence d'automatisation IA à Rouen | ClickDroit" description="ClickDroit, c'est Mavrick : un développeur web rouennais qui installe des automatisations IA chez les artisans et les avocats. Son parcours, sa façon de travailler." pathname="/a-propos" jsonLd={jsonLd}>
+<BaseLayout title="Agence d'automatisation IA à Rouen | ClickDroit" description="ClickDroit, c'est Mavrick : un développeur web rouennais qui installe des automatisations IA chez les artisans et les avocats. Son parcours, sa façon de travailler." pathname="/a-propos" jsonLd={ld}>
 <main id="contenu">
 <Fragment set:html={p0} />
 <Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "À propos"}]} />
-<Fragment set:html={p1} />
+<Fragment set:html={about} />
 <CalEmbed />
 <Fragment set:html={p2} />
 </main>
