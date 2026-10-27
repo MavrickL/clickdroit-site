@@ -1,0 +1,23 @@
+{
+  "name": "clickdroit-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "build:strict": "CLICKDROIT_STRICT_LEGAL=1 astro build"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource-variable/atkinson-hyperlegible-mono": "^5.2.8",
+    "@fontsource-variable/atkinson-hyperlegible-next": "^5.2.8",
+    "@fontsource-variable/bricolage-grotesque": "^5.2.8",
+    "astro": "^5.16.15",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.3"
+  }
+}

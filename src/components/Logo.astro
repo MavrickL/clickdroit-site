@@ -1,0 +1,28 @@
+---
+interface Props {
+  /** Lien vers l'accueil. Le monogramme du fondateur n'est pas un lien. */
+  linked?: boolean;
+  /** 48 px de haut, pour le cadre photo tant qu'il n'y a pas de portrait. */
+  large?: boolean;
+}
+const { linked = true, large = false } = Astro.props;
+const height = large ? 48 : 32;
+const width = Math.round((height * 684) / 144);
+const Tag = linked ? "a" : "span";
+---
+<Tag class:list={["cd-logo", large && "cd-logo--l"]} href={linked ? "/" : undefined} aria-label="ClickDroit">
+  <img
+    class="cd-logo__img cd-logo__img--light"
+    src="/logo-horizontal.svg"
+    alt="ClickDroit"
+    width={width}
+    height={height}
+  />
+  <img
+    class="cd-logo__img cd-logo__img--dark"
+    src="/logo-horizontal-inverse.svg"
+    alt=""
+    width={width}
+    height={height}
+  />
+</Tag>

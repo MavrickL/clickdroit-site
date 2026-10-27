@@ -1,0 +1,1 @@
+import"./clickdroit.js";document.querySelectorAll(`[data-hero-mockup]`).forEach(e=>{window.ClickDroit.mockup(e,JSON.parse(e.dataset.heroMockup))});

@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Conformite from "../components/legal/Conformite.astro";
+import { legalIsComplete } from "../config/legal";
+import jsonLd from "../markup/ia-et-conformite/ld.json?raw";
+import p0 from "../markup/ia-et-conformite/p0.html?raw";
+---
+<BaseLayout title="IA, RGPD et secret professionnel | ClickDroit" description="Hébergement en Europe, aucune donnée utilisée pour entraîner une IA, validation humaine, pseudonymisation pour les avocats : nos engagements, en clair." pathname="/ia-et-conformite" noindex={!legalIsComplete()} jsonLd={jsonLd} ctaHref="/audit">
+<main id="contenu">
+<Fragment set:html={p0} />
+<Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "IA et conformité"}]} />
+<Conformite />
+<Fragment set:html={"</div></article>"} />
+</main>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import MetierHero from "../components/metier/Hero.astro";
+import Automations from "../components/Automations.astro";
+import KitForm from "../components/KitForm.astro";
+import jsonLd from "../markup/btp/ld.json?raw";
+import p0 from "../markup/btp/p0.html?raw";
+import p1 from "../markup/btp/p1.html?raw";
+import p2 from "../markup/btp/p2.html?raw";
+import p3 from "../markup/btp/p3.html?raw";
+import heroHtml from "../markup/btp/hero.html?raw";
+import autoHtml from "../markup/btp/auto.html?raw";
+---
+<BaseLayout title="Automatisation IA pour artisans du BTP | ClickDroit" description="Devis depuis une note vocale, relances automatiques, appels manqués traités par SMS. Installé en 10 jours. Audit gratuit." pathname="/btp" jsonLd={jsonLd}>
+<main id="contenu">
+<Fragment set:html={p0} />
+<MetierHero><Fragment set:html={heroHtml} /></MetierHero>
+<Fragment set:html={p1} />
+<Automations><Fragment set:html={autoHtml} /></Automations>
+<Fragment set:html={p2} />
+<CalEmbed metier="BTP" />
+<Fragment set:html={p3} />
+<KitForm metier="artisan" source="btp-kit" />
+</main>
+</BaseLayout>

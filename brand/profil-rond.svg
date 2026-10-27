@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="ClickDroit">
+<title>ClickDroit</title>
+<rect width="240" height="240" rx="240" fill="#0B5ED7"/>
+<g transform="translate(72.00 48.00)">
+<path fill="#F5F3EE" d="M44 .17A48 48 0 0 0 0 48V96A48 48 0 0 0 44 143.83L44 127.75A32 32 0 0 1 16 96V48A32 32 0 0 1 44 16.25Z"/>
+<path fill="#0B0D10" d="M52 .17A48 48 0 0 1 96 48V96A48 48 0 0 1 52 143.83Z"/>
+</g>
+</svg>

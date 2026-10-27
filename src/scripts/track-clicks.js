@@ -1,0 +1,1 @@
+import{t as e}from"./track.js";document.addEventListener(`click`,t=>{let n=t.target?.closest(`[data-event]`);n&&e(n.dataset.event,n.dataset.source?{source:n.dataset.source}:void 0)});

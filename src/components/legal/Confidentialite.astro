@@ -1,0 +1,132 @@
+---
+import { legal } from "../../config/legal";
+import { site } from "../../config/site";
+
+const editor = legal.editorName?.trim() || "";
+const responsable = editor
+  ? editor.toLowerCase().includes("clickdroit")
+    ? editor
+    : `${editor} (ClickDroit)`
+  : "ClickDroit";
+const processors = legal.processors?.trim() || "";
+const retention = legal.prospectRetention?.trim() || "";
+const privacyEmail = legal.privacyEmail?.trim() || "";
+const externalCalendar = (() => {
+  if (!site.calLink) return false;
+  try {
+    return !/(^|\.)cal\.com$/i.test(new URL(site.calLink).hostname);
+  } catch {
+    return true;
+  }
+})();
+---
+<div class="legal__grid">
+  <div class="legal__intro">
+    <h1 class="h2" id="titre" style="font-size:clamp(32px,6vw,44px);line-height:1.1">Politique de confidentialité</h1>
+    {legal.updated && <p class="small muted" style="margin:12px 0 0">Dernière mise à jour&nbsp;: {legal.updated}</p>}
+  </div>
+  <nav class="legal__toc" aria-label="Sommaire">
+    <p class="legal__toc-title">Sommaire</p>
+    <ul class="cd-menu">
+      <li><a class="cd-menu__item" href="#responsable"><span class="cd-menu__label">Qui est responsable</span></a></li>
+      <li><a class="cd-menu__item" href="#donnees"><span class="cd-menu__label">Les données collectées, et pourquoi</span></a></li>
+      <li><a class="cd-menu__item" href="#destinataires"><span class="cd-menu__label">Qui reçoit vos données</span></a></li>
+      <li><a class="cd-menu__item" href="#conservation"><span class="cd-menu__label">Combien de temps</span></a></li>
+      <li><a class="cd-menu__item" href="#droits"><span class="cd-menu__label">Vos droits</span></a></li>
+      <li><a class="cd-menu__item" href="#cookies"><span class="cd-menu__label">Cookies</span></a></li>
+      <li><a class="cd-menu__item" href="#clients"><span class="cd-menu__label">Les données de nos clients</span></a></li>
+    </ul>
+  </nav>
+  <div class="legal__content">
+    <p>On collecte le moins de données possible, et uniquement pour ce qui est écrit ci-dessous.</p>
+    <h2 id="responsable">Qui est responsable</h2>
+    <p>
+      Le responsable du traitement est {responsable}{legal.address ? `, ${legal.address}` : ""}.
+      {privacyEmail && <> Pour toute question sur vos données&nbsp;: {privacyEmail}.</>}
+    </p>
+    <h2 id="donnees">Les données collectées, et pourquoi</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Quand</th>
+            <th scope="col">Quelles données</th>
+            <th scope="col">Pour quoi faire</th>
+            <th scope="col">Sur quelle base</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Réserver un audit</th>
+            <td>Prénom, nom, e-mail, entreprise, métier, taille de l'entreprise, la tâche qui vous coûte le plus, créneau choisi.</td>
+            <td>Organiser l'audit et le préparer.</td>
+            <td>Mesures précontractuelles prises à votre demande (art. 6.1.b du RGPD).</td>
+          </tr>
+          <tr>
+            <th scope="row">Recevoir un kit gratuit</th>
+            <td>Prénom, e-mail, métier.</td>
+            <td>Vous envoyer le kit, puis au maximum un e-mail par semaine.</td>
+            <td>Votre consentement (art. 6.1.a), retirable à tout moment par le lien de désinscription.</td>
+          </tr>
+          <tr>
+            <th scope="row">Mesurer l'audience</th>
+            <td>Pages vues, clics sur les boutons de réservation, utilisation du calculateur. Sans cookie, sans adresse IP conservée, sans profil.</td>
+            <td>Savoir ce qui est utile sur le site et l'améliorer.</td>
+            <td>Intérêt légitime (art. 6.1.f).</td>
+          </tr>
+          <tr>
+            <th scope="row">Nous écrire ou nous appeler</th>
+            <td>Vos coordonnées et le contenu de vos messages.</td>
+            <td>Vous répondre.</td>
+            <td>Mesures précontractuelles ou intérêt légitime, selon votre demande.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Aucune donnée n'est vendue ni utilisée pour entraîner une IA.</p>
+    <h2 id="destinataires">Qui reçoit vos données</h2>
+    {
+      processors ? (
+        <>
+          <p>Vos données sont traitées par ClickDroit et par les outils suivants, qui agissent pour notre compte&nbsp;:</p>
+          <p>{processors}</p>
+          <p>Si l'un d'eux traite des données hors de l'Union européenne, le tableau indique la garantie qui encadre ce transfert.</p>
+        </>
+      ) : (
+        <p>Vos données sont traitées par ClickDroit.</p>
+      )
+    }
+    <h2 id="conservation">Combien de temps</h2>
+    <ul>
+      <li>
+        Demandes d'audit et échanges{retention ? ` : ${retention}.` : "."} Si vous devenez client, les données suivent la durée du contrat et les obligations comptables.
+      </li>
+      <li>Kit et e-mails&nbsp;: jusqu'à votre désinscription.</li>
+      <li>Mesure d'audience&nbsp;: statistiques agrégées, sans donnée personnelle.</li>
+    </ul>
+    <h2 id="droits">Vos droits</h2>
+    <p>Vous pouvez demander l'accès à vos données, leur rectification, leur effacement, la limitation de leur traitement, vous opposer à leur traitement, en demander la portabilité, et retirer votre consentement à tout moment. Vous pouvez aussi définir des directives sur le sort de vos données après votre décès.</p>
+    <p>
+      {
+        privacyEmail ? (
+          <>Écrivez à {privacyEmail}. Réponse sous un mois.</>
+        ) : (
+          <>
+            Adressez votre demande à l'adresse indiquée dans les <a class="link" href="/mentions-legales">mentions légales</a>. Réponse sous un mois.
+          </>
+        )
+      }
+    </p>
+    <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir la CNIL (cnil.fr).</p>
+    <h2 id="cookies">Cookies</h2>
+    <p>Ce site ne dépose aucun cookie publicitaire ni de mesure d'audience&nbsp;: la mesure d'audience fonctionne sans cookie. C'est pour ça qu'il n'y a pas de bandeau cookies.</p>
+    <p>Les vidéos YouTube sont présentées sous forme d'images&nbsp;: le lecteur YouTube ne s'ouvre que si vous cliquez, sur le site de YouTube.</p>
+    {
+      externalCalendar && (
+        <p>La prise de rendez-vous ouvre l'agenda dans un nouvel onglet. Ce site n'intègre pas le calendrier et n'en dépose pas les cookies.</p>
+      )
+    }
+    <h2 id="clients">Les données de nos clients</h2>
+    <p>Les données traitées par les automatisations installées chez nos clients ne relèvent pas de cette page. Elles sont encadrées par un contrat de sous-traitance signé avec chaque client. Voir aussi <a class="link" href="/ia-et-conformite">IA et conformité</a>.</p>
+  </div>
+</div>

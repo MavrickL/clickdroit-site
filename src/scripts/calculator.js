@@ -1,0 +1,1 @@
+import{t as e}from"./track.js";import"./clickdroit.js";var t=document.getElementById(`calc`);t&&window.ClickDroit.calculator(t,()=>e(`calculateur_utilise`));

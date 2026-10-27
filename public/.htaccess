@@ -1,0 +1,69 @@
+# ClickDroit — Apache (Infomaniak)
+# URL propres, HTTPS, domaine nu, cache des fichiers hashés.
+#
+# Proxy HTTPS Infomaniak : %{HTTPS} reste « off » et la requête porte
+# X-Forwarded-Proto: https. Les deux conditions sont en ET. Une seule
+# d'entre elles boucle (HTTPS off derrière le proxy, ou en-tête absent
+# alors que TLS est terminé sur Apache).
+
+# -Indexes évite le listing de /_astro/.
+# Options -MultiViews n'est pas posé : si AllowOverride autorise
+# Options sans la valeur MultiViews, Apache répond
+# « Option MultiViews not allowed here » et tout le site passe en 500.
+# Le dossier de page prime sur un fichier .html homonyme ; la règle
+# THE_REQUEST redirige l'URL .html avant de servir ce fichier.
+Options -Indexes
+DirectoryIndex index.html
+# Sans ceci, mod_dir répond 301 /avocats → /avocats/ et la règle
+# ci-dessous renvoie vers /avocats : boucle. Directive de la classe
+# Indexes, autorisée dans .htaccess au même titre que DirectoryIndex.
+DirectorySlash Off
+
+RewriteEngine On
+
+# www → https://clickdroit.fr (apex, toujours en https)
+RewriteCond %{HTTP_HOST} ^www\.clickdroit\.fr$ [NC]
+RewriteRule ^ https://clickdroit.fr%{REQUEST_URI} [L,R=301]
+
+# http → https, connexion directe ou proxy. Les deux tests sont en ET.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://clickdroit.fr%{REQUEST_URI} [L,R=301]
+
+# Anciennes URL .html → URL propre. THE_REQUEST ignore la réécriture
+# interne vers index.html, sinon /avocats se redirigerait vers lui-même.
+# Cible en https absolu : derrière le proxy, Apache voit souvent la
+# requête en http. Une Location relative repartirait en http, puis
+# rebondirait. La cible https évite cet aller-retour.
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^ https://clickdroit.fr/ [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+(.+)/index\.html[\s?] [NC]
+RewriteRule ^ https://clickdroit.fr/%1 [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ https://clickdroit.fr/%1 [R=301,L]
+
+# /page/ → /page pour une page Astro, ou pour une URL qui n'est pas un
+# dossier réel. /_astro/ (dossier sans index.html) n'est pas renvoyé
+# vers /_astro, ce qui bouclerait avec DirectorySlash.
+RewriteCond %{REQUEST_URI} ^/(.+)/$
+RewriteCond %{DOCUMENT_ROOT}/%1/index.html -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/%1 !-d
+RewriteRule ^ https://clickdroit.fr/%1 [R=301,L]
+
+# Sert page/index.html même quand le dossier existe. Sans cette
+# réécriture, mod_dir (DirectorySlash On) renverrait /page vers /page/.
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(.+?)/?$ $1/index.html [L]
+
+ErrorDocument 404 /404.html
+
+# SetEnvIf + Header (classe FileInfo, comme RewriteRule). Le bloc <If>
+# n'est pas utilisé : il dépend du parseur d'expressions.
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/_astro/" astro_immutable
+</IfModule>
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=31536000, immutable" env=astro_immutable
+</IfModule>

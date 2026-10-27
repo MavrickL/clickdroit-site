@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import Hero from "../components/Hero.astro";
+import Explorer from "../components/Explorer.astro";
+import Calculator from "../components/Calculator.astro";
+import Founder from "../components/Founder.astro";
+import { founderDisplayName } from "../config/site";
+import jsonLd from "../markup/index/ld.json?raw";
+import p0 from "../markup/index/p0.html?raw";
+import p1 from "../markup/index/p1.html?raw";
+import p2 from "../markup/index/p2.html?raw";
+import p3 from "../markup/index/p3.html?raw";
+import p4 from "../markup/index/p4.html?raw";
+
+const founderStart = p3.indexOf('<section class="section" aria-labelledby="fondateur">');
+const founderEnd = p3.indexOf('<section class="section" aria-labelledby="faq"');
+const beforeFounder = p3.slice(0, founderStart);
+const afterFounder = p3.slice(founderEnd);
+const ld = jsonLd.replace('"name":"Mavrick"', `"name":${JSON.stringify(founderDisplayName())}`);
+---
+<BaseLayout title="Automatisation IA artisans et avocats | ClickDroit" description="ClickDroit installe en 10 jours des systèmes qui gèrent vos devis, relances et appels manqués. Prix fixe, hébergé en Europe. Audit gratuit." pathname="/" jsonLd={ld}>
+<main id="contenu">
+<Fragment set:html={p0} />
+<Hero />
+<Fragment set:html={p1} />
+<Explorer />
+<Fragment set:html={p2} />
+<Calculator />
+<Fragment set:html={beforeFounder} />
+<Founder />
+<Fragment set:html={afterFounder} />
+<CalEmbed />
+<Fragment set:html={p4} />
+</main>
+</BaseLayout>

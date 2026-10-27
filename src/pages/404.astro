@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Page introuvable | ClickDroit";
+const description = "Cette page n'existe pas ou a été déplacée. Retournez à l'accueil ou réservez un audit.";
+---
+<BaseLayout title={title} description={description} pathname="/404" noindex ctaHref="/audit">
+  <main id="contenu">
+    <section class="hero" aria-labelledby="titre">
+      <div class="wrap">
+        <h1 class="hero__h1" id="titre">Cette page n'existe pas.</h1>
+        <p class="hero__lead">Le lien est peut-être ancien. L'accueil et l'audit gratuit, eux, sont toujours là.</p>
+        <div class="actions">
+          <a class="cd-btn cd-btn--primary" href="/">Retour à l'accueil</a>
+          <a class="cd-btn cd-btn--secondary" href="/audit" data-event="clic_audit" data-source="404">Réserver un audit</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { founderDisplayName, site } from "../config/site";
+import jsonLd from "../markup/a-propos/ld.json?raw";
+import p0 from "../markup/a-propos/p0.html?raw";
+import p1 from "../markup/a-propos/p1.html?raw";
+import p2 from "../markup/a-propos/p2.html?raw";
+
+const name = founderDisplayName();
+let about = p1
+  .replace("Derrière ClickDroit, il y a Mavrick.", `Derrière ClickDroit, il y a ${name}.`)
+  .replace("Parler à Mavrick", `Parler à ${name}`)
+  .replace("Parlez-en directement avec Mavrick.", `Parlez-en directement avec ${name}.`);
+const photo = site.founder.photo?.trim();
+if (photo) {
+  about = about.replace(
+    '<div class="founder__photo founder__photo--empty"><span class="cd-logo cd-logo--l" aria-label="ClickDroit"><img class="cd-logo__img cd-logo__img--light" src="/logo-horizontal.svg" alt="ClickDroit" width="228" height="48"><img class="cd-logo__img cd-logo__img--dark" src="/logo-horizontal-inverse.svg" alt="" width="228" height="48"></span></div>',
+    `<div class="founder__photo"><img src="${photo}" alt="${site.founder.photoAlt}" width="800" height="1000"></div>`,
+  );
+}
+const ld = jsonLd.replace('"name":"Mavrick"', `"name":${JSON.stringify(name)}`);
+---
+<BaseLayout title="Agence d'automatisation IA à Rouen | ClickDroit" description="ClickDroit, c'est Mavrick Lintanf : un développeur web rouennais qui installe des automatisations IA chez les artisans et les avocats. Son parcours, sa façon de travailler." pathname="/a-propos" jsonLd={ld}>
+<main id="contenu">
+<Fragment set:html={p0} />
+<Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "À propos"}]} />
+<Fragment set:html={about} />
+<CalEmbed />
+<Fragment set:html={p2} />
+</main>
+</BaseLayout>

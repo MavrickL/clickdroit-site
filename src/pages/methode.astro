@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import jsonLd from "../markup/methode/ld.json?raw";
+import p0 from "../markup/methode/p0.html?raw";
+import p1 from "../markup/methode/p1.html?raw";
+import p2 from "../markup/methode/p2.html?raw";
+---
+<BaseLayout title="Méthode ClickDroit : automatisation IA en 10 jours" description="Audit gratuit, prix fixe sous 48 h, installation en 10 jours ouvrés, rapport mensuel des heures gagnées. Voici exactement comment on travaille." pathname="/methode" jsonLd={jsonLd}>
+<main id="contenu">
+<Fragment set:html={p0} />
+<Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "La méthode"}]} />
+<Fragment set:html={p1} />
+<CalEmbed />
+<Fragment set:html={p2} />
+</main>
+</BaseLayout>

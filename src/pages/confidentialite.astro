@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Confidentialite from "../components/legal/Confidentialite.astro";
+import { legalIsComplete } from "../config/legal";
+import jsonLd from "../markup/confidentialite/ld.json?raw";
+import p0 from "../markup/confidentialite/p0.html?raw";
+---
+<BaseLayout title="Confidentialité et données personnelles | ClickDroit" description="Quelles données le site ClickDroit collecte, pourquoi, combien de temps, qui les reçoit, et comment exercer vos droits." pathname="/confidentialite" noindex={!legalIsComplete()} jsonLd={jsonLd} ctaHref="/audit">
+<main id="contenu">
+<Fragment set:html={p0} />
+<Breadcrumbs items={[{"href": "/", "label": "Accueil"}, {"label": "Politique de confidentialité"}]} />
+<Confidentialite />
+<Fragment set:html={"</div></article>"} />
+</main>
+</BaseLayout>

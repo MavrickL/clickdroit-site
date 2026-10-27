@@ -1,0 +1,69 @@
+---
+import { legal, publisherEmail } from "../../config/legal";
+
+const name = legal.editorName?.trim() || "";
+const denomination = name
+  ? name.toLowerCase().includes("clickdroit")
+    ? name
+    : `${name} (ClickDroit)`
+  : "";
+const contact = [publisherEmail, legal.phone?.trim()].filter(Boolean).join(" · ");
+const hostContact = legal.host.contact?.trim() || "";
+const hostContactIsUrl = /^https?:\/\//i.test(hostContact);
+---
+<div class="legal__grid">
+  <div class="legal__intro">
+    <h1 class="h2" id="titre" style="font-size:clamp(32px,6vw,44px);line-height:1.1">Mentions légales</h1>
+    {legal.updated && <p class="small muted" style="margin:12px 0 0">Dernière mise à jour&nbsp;: {legal.updated}</p>}
+  </div>
+  <nav class="legal__toc" aria-label="Sommaire">
+    <p class="legal__toc-title">Sommaire</p>
+    <ul class="cd-menu">
+      <li><a class="cd-menu__item" href="#editeur"><span class="cd-menu__label">Éditeur du site</span></a></li>
+      <li><a class="cd-menu__item" href="#hebergement"><span class="cd-menu__label">Hébergement</span></a></li>
+      <li><a class="cd-menu__item" href="#propriete"><span class="cd-menu__label">Propriété intellectuelle</span></a></li>
+      <li><a class="cd-menu__item" href="#donnees"><span class="cd-menu__label">Données personnelles</span></a></li>
+      <li><a class="cd-menu__item" href="#credits"><span class="cd-menu__label">Crédits</span></a></li>
+    </ul>
+  </nav>
+  <div class="legal__content">
+    <h2 id="editeur">Éditeur du site</h2>
+    <p>Le site clickdroit.fr est édité par&nbsp;:</p>
+    <dl>
+      {denomination && <div><dt>Dénomination ou nom</dt><dd>{denomination}</dd></div>}
+      {legal.legalForm && <div><dt>Forme juridique</dt><dd>{legal.legalForm}</dd></div>}
+      {legal.address && <div><dt>Adresse</dt><dd>{legal.address}</dd></div>}
+      {legal.siret && <div><dt>SIRET</dt><dd>{legal.siret}</dd></div>}
+      {legal.registration && <div><dt>Immatriculation</dt><dd>{legal.registration}</dd></div>}
+      {legal.vat && <div><dt>TVA</dt><dd>{legal.vat}</dd></div>}
+      {contact && <div><dt>Contact</dt><dd>{contact}</dd></div>}
+      {legal.publicationDirector && <div><dt>Directeur de la publication</dt><dd>{legal.publicationDirector}</dd></div>}
+    </dl>
+    <h2 id="hebergement">Hébergement</h2>
+    <p>Le site est hébergé par&nbsp;:</p>
+    <dl>
+      {legal.host.name && <div><dt>Hébergeur</dt><dd>{legal.host.name}</dd></div>}
+      {legal.host.address && <div><dt>Adresse</dt><dd>{legal.host.address}</dd></div>}
+      {hostContact && (
+        <div>
+          <dt>Contact</dt>
+          <dd>
+            {hostContactIsUrl ? (
+              <a class="link" href={hostContact} rel="noopener">{hostContact}</a>
+            ) : (
+              hostContact
+            )}
+          </dd>
+        </div>
+      )}
+    </dl>
+    <h2 id="propriete">Propriété intellectuelle</h2>
+    <p>Les textes, le logo ClickDroit, les animations, les maquettes et la charte graphique de ce site appartiennent à l'éditeur. Toute reproduction, totale ou partielle, sans autorisation écrite est interdite.</p>
+    <p>Les noms et marques des logiciels cités (WhatsApp, Gmail, Outlook…) appartiennent à leurs propriétaires. Leur mention n'indique aucun partenariat.</p>
+    <h2 id="donnees">Données personnelles</h2>
+    <p>La façon dont vos données sont utilisées, conservées et protégées est expliquée dans la <a class="link" href="/confidentialite">politique de confidentialité</a>.</p>
+    <h2 id="credits">Crédits</h2>
+    <p>Polices&nbsp;: Bricolage Grotesque, Atkinson Hyperlegible Next et Atkinson Hyperlegible Mono, sous licence SIL Open Font License, hébergées sur ce site.</p>
+    <p>Les noms et situations présentés dans les démonstrations sont fictifs.</p>
+  </div>
+</div>
