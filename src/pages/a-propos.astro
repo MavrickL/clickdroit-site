@@ -16,7 +16,7 @@ let about = p1
 const photo = site.founder.photo?.trim();
 if (photo) {
   about = about.replace(
-    '<div class="founder__photo founder__photo--empty"><span class="cd-logo" aria-label="ClickDroit">Click<span class="cd-logo__droit">Droit</span></span></div>',
+    '<div class="founder__photo founder__photo--empty"><span class="cd-logo cd-logo--l" aria-label="ClickDroit"><img class="cd-logo__img cd-logo__img--light" src="/logo-horizontal.svg" alt="ClickDroit" width="228" height="48"><img class="cd-logo__img cd-logo__img--dark" src="/logo-horizontal-inverse.svg" alt="" width="228" height="48"></span></div>',
     `<div class="founder__photo"><img src="${photo}" alt="${site.founder.photoAlt}" width="800" height="1000"></div>`,
   );
 }

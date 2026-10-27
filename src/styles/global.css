@@ -4,3 +4,41 @@
 @import "./fonts.css";
 @import "./preflight.css";
 @import "./design.css";
+
+/* Logo vectoriel : hauteur proche de l'ancien wordmark (22 px), largeur figée. */
+.cd-logo {
+  flex-shrink: 0;
+  line-height: 0;
+}
+.cd-logo__img {
+  display: block;
+  width: 152px;
+  height: 32px;
+}
+.cd-logo--l .cd-logo__img {
+  width: 228px;
+  height: 48px;
+}
+.cd-logo__img--dark {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cd-logo__img--light {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .cd-logo__img--dark {
+    display: block;
+  }
+}
+:root[data-theme="dark"] .cd-logo__img--light {
+  display: none;
+}
+:root[data-theme="dark"] .cd-logo__img--dark {
+  display: block;
+}
+@media (width <= 960px) {
+  .cd-logo:not(.cd-logo--l) .cd-logo__img {
+    width: 128px;
+    height: 27px;
+  }
+}

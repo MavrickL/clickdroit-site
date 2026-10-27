@@ -1,5 +1,6 @@
 ---
 import { founderDisplayName, site } from "../config/site";
+import Logo from "./Logo.astro";
 
 const name = founderDisplayName();
 const photo = site.founder.photo?.trim() || "";
@@ -13,9 +14,7 @@ const years = site.founder.yearsAsDev;
         photo ? (
           <img src={photo} alt={site.founder.photoAlt} width="800" height="1000" />
         ) : (
-          <span class="cd-logo" aria-label="ClickDroit">
-            Click<span class="cd-logo__droit">Droit</span>
-          </span>
+          <Logo linked={false} large />
         )
       }
     </div>
